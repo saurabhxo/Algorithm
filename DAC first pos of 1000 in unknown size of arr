@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int res(int *arr,int i,  int j)
+{
+    if(arr[i]==1000 && arr[i-1]<1000)
+    return i;
+    else
+    {
+        int mid=(i+j)/2;
+        if(arr[mid]==1000 && arr[mid-1]<1000)
+        return mid;
+        else if(arr[mid]==1000)
+        {
+            res(arr, i, mid);
+        }
+        else 
+        res(arr, mid+1, j);
+    }
+}
+int fun(int *arr)
+{
+    int i=0;
+    while(true)
+    {
+        if(arr[i]==10000)
+        {
+            return i-1;
+        }
+        else
+        {
+            if(i==0)
+            {
+                i=i+2;
+            }
+            i=i*2;
+        }
+    }
+}
+int main() 
+{
+    
+    int arr[]={10, 20, 30, 5, 11,32, 33, 33, 34, 56 , 1000, 1000, 1000, 1000, 1000, 
+    1000, 10000, 10000, 10000, 10000, 10000,10000, 10000, 10000, 10000, 10000};
+    int n=fun(arr);
+    cout<<res(arr,0, n);
+//cout<<n;
+	return 0;
+}
